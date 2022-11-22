@@ -40,23 +40,53 @@ export class VouchersService {
         const voucher = await this.findVoucher(voucherId);
         return {
           id: voucher.id,
-          description: voucher.description,
-          price: voucher.price,
           createdAt: voucher.createdAt,
+          updatedAt : voucher.updatedAt,
+          hotline: voucher.hotline,
+          website: voucher.website,
+          description: voucher.description,
+          content: voucher.content,
+          effectiveDate: voucher.effectiveDate,
+          expirationDate: voucher.expirationDate,
+          price: voucher.price,
         };
       }
     
       async updateVoucher(
-        voucherId: string,
-        desc: string,
-        price: number,
+        id: string,
+        upAt:string,
+        hotline: string,
+        website: string,
+        description: string,
+        content: string,
+        effectiveDate: string,
+        expirationDate: string,
+        price: number
       ) {
-        const updatedVoucher = await this.findVoucher(voucherId);
-        if (desc) {
-          updatedVoucher.description = desc;
+        const updatedVoucher = await this.findVoucher(id);
+        if (upAt) {
+          updatedVoucher.updatedAt = upAt;
+        }
+        if (description) {
+          updatedVoucher.description = description;
         }
         if (price) {
           updatedVoucher.price = price;
+        }
+        if (website) {
+          updatedVoucher.website = website;
+        }
+        if (hotline) {
+          updatedVoucher.hotline = hotline;
+        }
+        if (content) {
+          updatedVoucher.website = content;
+        }
+        if (effectiveDate) {
+          updatedVoucher.effectiveDate = effectiveDate;
+        }
+        if (expirationDate) {
+          updatedVoucher.expirationDate = expirationDate;
         }
         updatedVoucher.save();
       }

@@ -41,11 +41,18 @@ export class VouchersController {
     }
     @Patch(':id')
     updateVoucher(
-      @Param('id') prodId: string,
-      @Body('description') prodDesc: string,
-      @Body('price') prodPrice: number,
+      @Param('id') vouId: string,
+      @Body('updatedAt') vouUpAt :string,
+      @Body('hotline') vouHotline: string,
+      @Body('website') vouWebsite: string,
+      @Body('description') vouDesc: string,
+      @Body('content') vouContent: string,
+      @Body('effectiveDate') vouEfDate: string,
+      @Body('expirationDate') vouExDate: string,
+      @Body('price') vouPrice: number,
     ) {
-      this.vouchersService.updateVoucher(prodId, prodDesc, prodPrice);
+        vouUpAt = Date().toString();
+      this.vouchersService.updateVoucher(vouId,vouUpAt,vouHotline,vouWebsite,vouDesc,vouContent,vouEfDate,vouExDate,vouPrice);
       return null;
     }
     @Delete(':id')
